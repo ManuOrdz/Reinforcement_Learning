@@ -33,16 +33,16 @@ print("New state obtained from action:",action)
 print(f'Observation:{observation} \nReward:{reward}\nTerminated:{terminated}')
 
 ##hiperparameters
-learning_rate = 0.05
-n_episodes = 100000
+learning_rate = 0.02
+n_episodes = 10000
 start_epsilon = 1.0
 epsilon_decay = start_epsilon / (n_episodes/2)
-final_epsilon = 0.1
+final_epsilon = 0.05
 
 env = gym.wrappers.RecordVideo (env=env, 
                                 video_folder='QLearning/tmp',
                                 name_prefix='test-video',
-                                episode_trigger=lambda x: (x+1)%30000 == 0)
+                                episode_trigger=lambda x: (x-1)%3000 == 0)
 
 env = gym.wrappers.RecordEpisodeStatistics(env=env, deque_size=n_episodes)
 

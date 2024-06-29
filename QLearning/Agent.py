@@ -1,13 +1,7 @@
 from __future__ import annotations
 
-from collections import defaultdict
-
 import gymnasium as gym
-
-import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
-from tqdm import tqdm
 
 class QLearning:
     def __init__(
