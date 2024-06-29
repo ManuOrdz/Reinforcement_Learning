@@ -1,14 +1,13 @@
 #Imports and Environment Setup
 from __future__ import annotations
 
-from collections import defaultdict
-
 import gymnasium as gym
 
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 from tqdm import tqdm
+from Parameters import QParameters  
 from Agent import QLearning
 # Create the enviroment
 
@@ -32,12 +31,13 @@ observation, reward, terminated, truncated, info = env.step(action)
 print("New state obtained from action:",action)
 print(f'Observation:{observation} \nReward:{reward}\nTerminated:{terminated}')
 
+param = QParameters()
 ##hiperparameters
-learning_rate = 0.02
-n_episodes = 100
-start_epsilon = 1.0
-epsilon_decay = start_epsilon / (n_episodes/2)
-final_epsilon = 0.05
+learning_rate = param.learning_rate
+n_episodes = param.n_episodes
+start_epsilon = param.start_epsilon
+epsilon_decay = param.epsilon_decay
+final_epsilon = param.final_epsilon
 
 env = gym.wrappers.RecordVideo (env=env, 
                                 video_folder='QLearning/tmp',
@@ -53,7 +53,6 @@ agent = QLearning(
     observation_space=observation_space,
     action_space = action_space,
 )
-print(agent.get_action(observation))
 
 #for episode in tqdm(range(n_episodes)):
 #    state, info = env.reset()

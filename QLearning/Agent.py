@@ -19,7 +19,6 @@ class QLearning:
         of state-action table (q_table), a learning rate an epsilon.
         
         Args:
-            env: The environment
             learning_rate (float): The learning rate
             initial_epsilon: The inital epsilon value
             epsilon_decay: The decay for epsilon
