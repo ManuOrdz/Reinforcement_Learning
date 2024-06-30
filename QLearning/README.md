@@ -46,14 +46,14 @@ python main.py
 
 - Initialize the Q(s,a) arbitrarily for all states $s$ and actions $a$.
 
-    $\\
-    Q(s,a) \leftarrow 
-    \begin{bmatrix}
-    0 & .. & 0 \\
-    : &  & : \\
-    0 & .. & n
-    \end{bmatrix}
-    $
+$\\
+Q(s,a) \leftarrow 
+\begin{bmatrix}
+0 & .. & 0 \\
+: &  & : \\
+0 & .. & n
+\end{bmatrix}
+$
 
 - Set the hyperparameters: learning rate \($\alpha$\), discount factor \($\gamma$\), and exploration parameter \($\epsilon$\). *example:*\
     $\\
