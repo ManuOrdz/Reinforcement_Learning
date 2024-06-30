@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import gymnasium as gym
 import numpy as np
+import matplotlib.pyplot as plt
 
 class QLearning:
     def __init__(
@@ -99,13 +100,92 @@ class QLearning:
         self.rewards = []
         self.training_error.append(delta)
         
-        
     def decay_epsilon(self):
+        """ Aplay de epsilon decay
+        """
         self.epsilon = max(self.final_epsilon, self.epsilon - self.epsilon_decay)
-        
         
     def reset_qtable(self):
         """Reset the Q-table = 0"""
         act_size = self.action_space.n
         q_size = tuple(size for size in (self.q_size+(act_size,)))
         self.q_table = np.zeros(shape=q_size)
+        
+    def metrics(
+        self, 
+        training_error: np.array | list, 
+        reward_episode: np.array | list, 
+        length_episode: np.array | list,
+        rolling_length: int = 100,
+        plot: bool = False,
+        **kwargs,
+        ):
+        
+        metrics = Metrics(training_error, reward_episode, length_episode) 
+               
+        self.training_error_moving_average = metrics.moving_average(rolling_length, 'training')
+        self.reward_moving_average = metrics.moving_average(rolling_length, 'reward')
+        self.length_moving_average = metrics.moving_average(rolling_length, 'length')
+        
+        if plot:
+            p = Plot()
+            p.plot(self.reward_moving_average,
+                   self.length_moving_average,
+                   self.training_error_moving_average)
+
+class Metrics:
+    def __init__(
+        self,
+        training_error: np.array | list,
+        reward_episode: np.array | list,
+        length_episode: np.array | list,
+    ):
+        self.training_error = np.array(training_error)
+        self.reward_episode = np.array(reward_episode).flatten()
+        self.length_episode = np.array(length_episode).flatten()
+        
+    def moving_average(self, 
+                       rolling_length: int, 
+                       kind: str = 'training') -> np.array:
+        """Calcule moving average for metrics smother
+
+        Args:
+            rolling_length (int): rolling lenght
+            kind (str, optional): variable to applay Defaults to 'training'.
+
+        Returns:
+            np.array: moving average array
+        """
+                    
+        if kind == 'training':
+            a = self.training_error
+            mode = 'same'
+        elif kind == 'reward':
+            a = self.reward_episode
+            mode = 'valid'
+        elif kind == 'length':
+            a = self.length_episode
+            mode = 'same'
+            
+        moving_average = (
+            np.convolve(
+                a=a, v=np.ones(rolling_length)
+            ) / rolling_length
+        )
+        return moving_average
+
+class Plot():
+    def __init__(self, **kwargs):
+        self.fig, self.axs = plt.subplots(ncols = 3, figsize=(12,5), tight_layout=True)
+        pass
+    
+    def plot(self, reward_moving_average, length_moving_average, training_error_moving_average):
+        self.axs[0].set_title("Episode rewards")
+        self.axs[0].plot(range(len(reward_moving_average)),reward_moving_average)
+        
+        self.axs[1].set_title("Lenght Episode")
+        self.axs[1].plot(range(len(length_moving_average)),length_moving_average)
+        
+        self.axs[2].set_title("Training Error")
+        self.axs[2].plot(range(len(training_error_moving_average)),training_error_moving_average)
+        

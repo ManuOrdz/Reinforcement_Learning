@@ -1,6 +1,6 @@
 import gymnasium as gym
 
-env = gym.make("Taxi-v3", render_mode='human').env
+env = gym.make("Taxi-v3", render_mode='human', max_episode_steps=500).env
 state, _ = env.reset()
 
 action = env.action_space.sample(env.action_mask(state))
