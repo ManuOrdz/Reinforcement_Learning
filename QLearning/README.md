@@ -44,23 +44,19 @@ python main.py
 ### Initialization
 
 
-- Initialize the Q(s,a) arbitrarily for all states $s$ and actions $a$.
-
-
-$Q(s,a) \leftarrow
-\begin{bmatrix}
-0 & .. & 0 \\
-: & ^{.}{.} & : \\
-0 & .. & n
-\end{bmatrix}
+- Initialize the $Q(s,a)$ arbitrarily for all states $s$ and actions $a$.
+\
+$
+    Q(s,a) \leftarrow
+    \begin{bmatrix}
+    0 & .. & 0 \\
+    : & ^{.}{.} & : \\
+    0 & .. & n
+    \end{bmatrix}
 $
 
-- Set the hyperparameters: learning rate \($\alpha$\), discount factor \($\gamma$\), and exploration parameter \($\epsilon$\). *example:* 
-    $
-    \alpha\ = 0.01,
-    \gamma\ = 0.95,
-    \epsilon\ = 0.1
-    $
+- Set the hyperparameters: learning rate \($\alpha$\), discount factor \($\gamma$\), and exploration parameter \($\epsilon$\). *example:* \
+$\alpha\ = 0.01, \gamma\ = 0.95, \epsilon\ = 0.10$
 
 ### Training Process
 

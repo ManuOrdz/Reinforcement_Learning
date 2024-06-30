@@ -19,7 +19,7 @@ class QParameters:
             gamma: The discount factor for computing the Q-value
         """
         self.learning_rate = learning_rate
-        self.n_episodes = n_episodes
+        self.n_episodes = n_episodes + 1 
         self.start_epsilon = start_epsilon
         self.final_epsilon = final_epsilon
         self.epsilon_decay = start_epsilon / (n_episodes/2)
