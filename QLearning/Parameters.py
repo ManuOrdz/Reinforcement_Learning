@@ -9,7 +9,7 @@ class QParameters:
         final_epsilon: float = 0.1,
         gamma: float =0.95,
     ):
-        """Initiaze parameter for Qlearnig Class
+        """Initiaze parameters for Qlearnig Class
 
         Args:
             learning_rate (float): The learning rate
