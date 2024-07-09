@@ -68,7 +68,7 @@ class Agent(object):
 agent = Agent()
 episode_durations = []        
 
-for i_episode in tqdm(range(50)):
+for i_episode in tqdm(range(10)):
     state, info = env.reset()
     state = agent.state_to_tensor(state)
     for t in count():
@@ -98,4 +98,3 @@ for i_episode in tqdm(range(50)):
         
 
 print(episode_durations)
-
