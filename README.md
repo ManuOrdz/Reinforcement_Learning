@@ -8,6 +8,7 @@ Reinforcement Learning (RL) is a branch of machine learning where an agent learn
 
 ## 📂 Repository Structure
 
+```bash
 ├── notes/ # Detailed notes on RL concepts and papers
 ├── algorithms/ # Implementations of popular RL algorithms
 │ ├── value_based/ # Value-based methods (e.g., Q-Learning, DQN)
@@ -17,6 +18,9 @@ Reinforcement Learning (RL) is a branch of machine learning where an agent learn
 ├── experiments/ # Projects and experiments using RL techniques
 ├── utils/ # Helper functions and utility scripts
 └── README.md # This file
+```
+
+```
 
 ## 🔑 Key Topics Covered
 
