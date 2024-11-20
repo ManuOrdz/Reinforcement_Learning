@@ -18,7 +18,7 @@ Reinforcement Learning (RL) is a branch of machine learning where an agent learn
 ├── experiments/ # Projects and experiments using RL techniques
 ├── utils/ # Helper functions and utility scripts
 └── README.md # This file
-```
+```bash
 
 ```
 
